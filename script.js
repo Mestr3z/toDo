@@ -1,9 +1,10 @@
 const form = document.querySelector("form");
 const input = document.querySelector('input[type="text"]');
-const ul = document.querySelector("ul");
+const ul = document.querySelector("#taskList");
+const addTaskBtn = document.querySelector("#addTaskBtn");
 
 function addTask() {
-  const taskInput = document.getElementById("task");
+  const taskInput = document.getElementById("taskInput");
   const taskList = document.getElementById("taskList");
   const newTask = document.createElement("li");
   newTask.innerText = taskInput.value;
@@ -18,7 +19,6 @@ function addTask() {
   });
 }
 
-// Функция для создания новой задачи
 function createTask(text) {
   const li = document.createElement("li");
   li.textContent = text;
@@ -40,6 +40,11 @@ function createTask(text) {
   });
 }
 
+// Добавляем обработчик события для изменения доступности кнопки
+input.addEventListener("input", () => {
+  addTaskBtn.disabled = input.value.trim() === "";
+});
+
 // Добавляем обработчик события для отправки формы
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -47,5 +52,6 @@ form.addEventListener("submit", (event) => {
   if (text !== "") {
     createTask(text);
     input.value = "";
+    addTaskBtn.disabled = true;
   }
 });

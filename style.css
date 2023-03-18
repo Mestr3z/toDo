@@ -82,3 +82,9 @@ li[data-completed="true"] {
 li:hover {
     background-color: #eee;
 }
+
+button[disabled] {
+    cursor: default;
+    background-color: #ccc;
+    color: #666;
+  }
