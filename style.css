@@ -87,4 +87,57 @@ button[disabled] {
     cursor: default;
     background-color: #ccc;
     color: #666;
+}
+
+/* Оформление блока выбора дня недели */
+select#daySelect {
+    height: 42.8px;
+    outline: none;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px #ccc;
+    font-size: 16px;
+    width: 170px;
+    max-width: 100%;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Оформление блока выбора времени */
+input#timeInput {
+    outline: none;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px #ccc;
+    font-size: 16px;
+    width: 150px;
+    max-width: 100%;
+    background-color: #fff;
+    color: #333;
+}
+
+.form-group {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .form-group select,
+  .form-group input[type="time"] {
+    flex: 1;
+  }
+
+  #addTaskBtn {
+    width: 80%;
+    max-width: 500px;
+    margin-top:20px;
+  }
+  
+  @media screen and (max-widht:400px){
+    li{
+        display: flex;
+        flex-direction: column;
+    }
+
   }

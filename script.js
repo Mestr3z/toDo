@@ -2,56 +2,92 @@ const form = document.querySelector("form");
 const input = document.querySelector('input[type="text"]');
 const ul = document.querySelector("#taskList");
 const addTaskBtn = document.querySelector("#addTaskBtn");
+const timeInput = document.querySelector("#timeInput");
+const daySelect = document.querySelector("#daySelect");
 
 function addTask() {
-  const taskInput = document.getElementById("taskInput");
-  const taskList = document.getElementById("taskList");
-  const newTask = document.createElement("li");
-  newTask.innerText = taskInput.value;
-  taskList.appendChild(newTask);
-  taskInput.value = "";
-  newTask.addEventListener("click", function () {
-    if (newTask.getAttribute("data-completed") === "true") {
-      newTask.removeAttribute("data-completed");
-    } else {
-      newTask.setAttribute("data-completed", "true");
-    }
-  });
+const taskInput = document.getElementById("taskInput");
+const taskList = document.getElementById("taskList");
+const newTask = document.createElement("li");
+const taskText = document.createElement("span");
+const taskTime = document.createElement("span");
+const taskDay = document.createElement("span");
+
+taskText.innerText = taskInput.value;
+taskTime.innerText = timeInput.value;
+taskDay.innerText = daySelect.value;
+
+newTask.appendChild(taskText);
+newTask.appendChild(taskTime);
+newTask.appendChild(taskDay);
+
+taskList.appendChild(newTask);
+
+taskInput.value = "";
+timeInput.value = "";
+daySelect.selectedIndex = 0;
+
+newTask.addEventListener("click", function () {
+if (newTask.getAttribute("data-completed") === "true") {
+newTask.removeAttribute("data-completed");
+} else {
+newTask.setAttribute("data-completed", "true");
+}
+});
+// Создание кнопки "удалить"
+const deleteBtn = document.createElement("button");
+deleteBtn.textContent = "Удалить";
+newTask.appendChild(deleteBtn);
+
+ul.appendChild(newTask);
+taskInput.value = "";
+taskTime.value = "";
+taskDay.value = "";
+addTaskBtn.disabled = true;
 }
 
-function createTask(text) {
-  const li = document.createElement("li");
-  li.textContent = text;
-  ul.appendChild(li);
+function createTask(text, time, day) {
+const li = document.createElement("li");
+const taskText = document.createElement("span");
+const taskTime = document.createElement("span");
+const taskDay = document.createElement("span");
 
-  // Добавляем обработчик события для отметки выполнения задачи
-  li.addEventListener("click", () => {
-    li.dataset.completed = true;
-  });
+taskText.innerText = text;
+taskTime.innerText = time;
+taskDay.innerText = day;
 
-  // Добавляем кнопку удаления задачи
-  const deleteButton = document.createElement("button");
-  deleteButton.textContent = "Удалить";
-  li.appendChild(deleteButton);
+li.appendChild(taskText);
+li.appendChild(taskTime);
+li.appendChild(taskDay);
 
-  // Добавляем обработчик события для удаления задачи
-  deleteButton.addEventListener("click", () => {
-    li.remove();
-  });
+ul.appendChild(li);
+
+li.addEventListener("click", function () {
+if (li.getAttribute("data-completed") === "true") {
+li.removeAttribute("data-completed");
+} else {
+li.setAttribute("data-completed", "true");
+}
+});
 }
 
-// Добавляем обработчик события для изменения доступности кнопки
-input.addEventListener("input", () => {
-  addTaskBtn.disabled = input.value.trim() === "";
+input.addEventListener("input", function () {
+if (input.value.trim() !== "") {
+addTaskBtn.removeAttribute("disabled");
+} else {
+addTaskBtn.setAttribute("disabled", "disabled");
+}
 });
 
-// Добавляем обработчик события для отправки формы
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const text = input.value.trim();
-  if (text !== "") {
-    createTask(text);
-    input.value = "";
-    addTaskBtn.disabled = true;
-  }
+form.addEventListener("submit", function (event) {
+event.preventDefault();
+addTask();
 });
+
+function deleteTask(e) {
+if (e.target.tagName === "BUTTON") {
+e.target.parentNode.remove();
+}
+}
+
+ul.addEventListener("click", deleteTask);

@@ -2,23 +2,35 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Список дел</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Список дел</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="container">
-        <h1>Список дел</h1>
-        <form>
-            <input type="text" id="taskInput" placeholder="Добавить новую задачу...">
-            <button type="submit" id="addTaskBtn" disabled>Добавить</button>
-        </form>
-        <ul id="taskList">
-        </ul>
-    </div>
-    <script src="script.js"></script>
+  <div class="container">
+    <h1>Список дел</h1>
+    <form>
+      <input type="text" id="taskInput" placeholder="Добавить новую задачу...">
+      <div class ="form-group">
+      <select id="daySelect">
+        <option value="Понедельник">Понедельник</option>
+        <option value="Вторник">Вторник</option>
+        <option value="Среда">Среда</option>
+        <option value="Четверг">Четверг</option>
+        <option value="Пятница">Пятница</option>
+        <option value="Суббота">Суббота</option>
+        <option value="Воскресенье">Воскресенье</option>
+      </select>
+      </div>
+      <input type="time" id="timeInput">
+      <button type="submit" id="addTaskBtn" disabled>Добавить</button>
+    </form>
+    <ul id="taskList">
+    </ul>
+  </div>
+  <script src="script.js"></script>
 </body>
 
 </html>
