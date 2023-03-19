@@ -15,4 +15,4 @@ The application is still in development, but its main functionality is already a
 - CSS
 - JS
 
-[Link to the project](mestr3z.github.io/toDo/)
+[Link to the project](https://mestr3z.github.io/toDo/)
