@@ -34,7 +34,7 @@ newTask.removeAttribute("data-completed");
 newTask.setAttribute("data-completed", "true");
 }
 });
-// Создание кнопки "удалить"
+
 const deleteBtn = document.createElement("button");
 deleteBtn.textContent = "Удалить";
 newTask.appendChild(deleteBtn);
